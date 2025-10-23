@@ -65,16 +65,6 @@ Use these example prompts in the console to test behavior. They exercise order l
 ## If something doesn't work
 - Ensure `Data/mock_purchases.json` exists and is readable.
 - Make sure required packages are installed and `GEMINI_API_KEY` is set if you want to use the Gemini model.
-- If you prefer not to use Gemini, you can run the repo with local fallbacks (I previously added such fallbacks). If you removed them, re-install the packages.
-
-## Development notes
-- `src/graph_agent.py` is the primary integration point. If you want to test `is_eligible_for_return` separately, open a Python shell and run:
-
-```python
-from src.tools import is_eligible_for_return, product_return_policy
-order = next(o for o in __import__('json').load(open('Data/mock_purchases.json')) if o['order_id'] == 'ORD-1005')
-print(is_eligible_for_return(order['purchase_date'], product_return_policy(order['product_name'])))
-```
 
 ## Suggested example questions to include in UI or tests
 - "Can I return my Nimbus Smartwatch? Order ORD-1005"
@@ -82,5 +72,3 @@ print(is_eligible_for_return(order['purchase_date'], product_return_policy(order
 - "What's the return window for Luna Wireless Mouse?"
 - "How many days do I have left to return ORD-1004?"
 
----
-If you'd like, I can also add a `requirements.txt`, example unit tests for `is_eligible_for_return`, or commit these changes to git. Which would you like next?
