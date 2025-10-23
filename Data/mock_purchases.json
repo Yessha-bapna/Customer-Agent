@@ -1,0 +1,32 @@
+[
+  {
+    "order_id": "ORD-1001",
+    "product_name": "Acme Noise-Cancelling Headphones",
+    "purchase_date": "2025-09-20",
+    "price": 129.99
+  },
+  {
+    "order_id": "ORD-1002",
+    "product_name": "Gamma Stainless Water Bottle",
+    "purchase_date": "2025-07-10",
+    "price": 24.99
+  },
+  {
+    "order_id": "ORD-1003",
+    "product_name": "Luna Wireless Mouse",
+    "purchase_date": "2025-10-12",
+    "price": 39.50
+  },
+  {
+    "order_id": "ORD-1004",
+    "product_name": "Aurora Yoga Mat",
+    "purchase_date": "2025-04-03",
+    "price": 49.00
+  },
+  {
+    "order_id": "ORD-1005",
+    "product_name": "Nimbus Smartwatch",
+    "purchase_date": "2025-10-23",
+    "price": 199.00
+  }
+]

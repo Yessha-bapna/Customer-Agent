@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / distribution files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+venv.bak/
+
+# Python environment managers
+.python-version
+
+# dotenv/secrets
+.env
+.env.*
+.env.local
+*.key
+
+# Editor / IDE
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+nosetests.xml
+
+# Logs
+*.log
+
+# Database
+*.sqlite3
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Misc
+*.bak
+*.swp
+
+# Node / frontend (if any)
+node_modules/
+
+# Local build artifacts
+*.egg
+
+# Ignore generated files from tools
+.mypy_cache/
+
+# Keep your Data directory in source control unless it contains secrets.
+# If your Data contains sensitive or large files, add them here (example):
+# Data/*.json
