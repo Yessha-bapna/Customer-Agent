@@ -30,9 +30,8 @@ return_agent/
 ├── src/
 │   ├── tools.py
 │   ├── graph_agent.py
-│   ├── run.py
 │   └── __init__.py
-│
+│── run.py
 ├── .env
 └── README.md
 ```
@@ -109,7 +108,7 @@ In `Data/mock_purchases.json`:
 
 In terminal:
 ```bash
-python src/run.py
+python run.py
 ```
 
 Example Usage:
