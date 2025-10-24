@@ -128,8 +128,8 @@ exit
 ---
 
 ## 💡 Example Queries to Test
-| User Query | What Happens |
-|-----------|--------------|
+| User Query |
+|-----------|
 | "Is order ORD-1003 still eligible?" 
 | "Can I return my Aurora yoga mat?" 
 | "How many days left to return my Nimbus smartwatch?"
