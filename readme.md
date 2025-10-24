@@ -1,74 +1,161 @@
-# Customer Agent
 
-This small project is a terminal-based customer support agent that can answer questions about product return eligibility using a mock purchases dataset.
+# Product Return Support Agent 
 
-## Quick overview
-- Main script: `run_console.py` — starts a terminal REPL to ask questions.
-- Agent implementation: `src/graph_agent.py` — orchestrates reasoning, action lookup, and response generation.
-- Tools: `src/tools.py` — contains return policies and the `is_eligible_for_return` helper.
-- Mock data: `Data/mock_purchases.json` — contains sample orders used for testing.
+This project is a **Customer Support AI Agent** built using **Python**, **LangGraph**, and **Gemini API**.  
+It helps users check whether a product is still eligible for return based on its order date and store policy.
 
-## Requirements
-- Python 3.10 or newer
-- The project expects these Python packages (install with pip):
-  - python-dotenv
-  - google-generativeai
-  - langgraph
+---
 
-Install dependencies (recommended in a virtual environment):
+## ✅ Features
+✔ Uses **Generative AI (Gemini model)** to understand customer queries  
+✔ Follows **React Pattern (Reason → Act → Respond)** using LangGraph  
+✔ Includes **Mock Purchase Data** (5 example orders)  
+✔ Implements tool-based logic:
+- `lookup_order`
+- `lookup_order_by_name`
+- `product_return_policy`
+- `is_eligible_for_return`
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt  # or pip install python-dotenv google-generativeai langgraph
+✔ Runs as an **interactive console chatbot**
+
+---
+
+## 🧩 Project Structure
+```
+return_agent/
+│
+├── Data/
+│   └── mock_purchases.json
+│
+├── src/
+│   ├── tools.py
+│   ├── graph_agent.py
+│   ├── run.py
+│   └── __init__.py
+│
+├── .env
+└── README.md
 ```
 
-If you plan to use Gemini (recommended for best responses) set your Gemini API key in an environment variable named `GEMINI_API_KEY` (or in a `.env` file):
+---
 
-```powershell
-$env:GEMINI_API_KEY = "your_api_key_here"
+## 🔑 Environment Setup
+
+### 1️⃣ Create and Activate Virtual Environment (Optional but Recommended)
+```bash
+python -m venv venv
+venv\Scripts\activate   # On Windows
+# OR
+source venv/bin/activate  # On macOS/Linux
 ```
 
-## Run the agent
-
-Start the console:
-
-```powershell
-python .\run_console.py
+### 2️⃣ Install Dependencies
+```bash
+pip install langgraph google-generativeai python-dotenv or pip install -r requirements.txt
 ```
 
-Type questions and press Enter. Type `exit` or `quit` to stop.
+### 3️⃣ Create `.env` file
+In project root:
+```
+GEMINI_API_KEY=YOUR_API_KEY_HERE
+```
 
-## Where the data comes from
-- The mock data used by the agent lives at `Data/mock_purchases.json` and is the source of truth for return-eligibility checks in demo/test runs.
+You can generate an API key from:  
+➡ https://aistudio.google.com/app/apikey
 
-## Example queries to try
-Use these example prompts in the console to test behavior. They exercise order lookup, product-name lookup, and return-policy responses.
+---
 
-- Ask by order id:
-  - "Can I return order ORD-1005?"
-  - "What's the return policy for ORD-1002?"
+## 🗃 Mock Data File
 
-- Ask by product name:
-  - "Can I return my Nimbus Smartwatch?"
-  - "I bought the Luna Wireless Mouse — is it eligible for return?"
+In `Data/mock_purchases.json`:
+```json
+[
+  {
+    "order_id": "ORD-1001",
+    "product_name": "Acme Noise-Cancelling Headphones",
+    "purchase_date": "2025-09-20",
+    "price": 129.99
+  },
+  {
+    "order_id": "ORD-1002",
+    "product_name": "Gamma Stainless Water Bottle",
+    "purchase_date": "2025-07-10",
+    "price": 24.99
+  },
+  {
+    "order_id": "ORD-1003",
+    "product_name": "Luna Wireless Mouse",
+    "purchase_date": "2025-10-12",
+    "price": 39.50
+  },
+  {
+    "order_id": "ORD-1004",
+    "product_name": "Aurora Yoga Mat",
+    "purchase_date": "2025-04-03",
+    "price": 49.00
+  },
+  {
+    "order_id": "ORD-1005",
+    "product_name": "Nimbus Smartwatch",
+    "purchase_date": "2025-09-01",
+    "price": 199.00
+  }
+]
+```
 
-- Edge-case / follow-ups to test error handling:
-  - "Can I return ORD-9999?" (non-existent order)
-  - "How many days left to return my Acme Noise-Cancelling Headphones?"
+---
 
-## What the agent checks
-- Lookup: searches `Data/mock_purchases.json` by `order_id` or `product_name`.
-- Policy: `src/tools.py` maps product names to allowed return days.
-- Eligibility: `is_eligible_for_return(purchase_date, allowed_days)` computes days remaining and eligibility.
+## ▶️ How to Run the Agent
 
-## If something doesn't work
-- Ensure `Data/mock_purchases.json` exists and is readable.
-- Make sure required packages are installed and `GEMINI_API_KEY` is set if you want to use the Gemini model.
+In terminal:
+```bash
+python src/run.py
+```
 
-## Suggested example questions to include in UI or tests
-- "Can I return my Nimbus Smartwatch? Order ORD-1005"
-- "Is ORD-1002 eligible for return?"
-- "What's the return window for Luna Wireless Mouse?"
-- "How many days do I have left to return ORD-1004?"
+Example Usage:
+```
+product Return Support Agent
+Type 'exit' to quit
+
+You: Can I return my Nimbus Smartwatch?
+Agent: ✅ Yes! Your product is still eligible for return with X days left.
+```
+
+Stop anytime using:
+```
+exit
+```
+
+---
+
+## 💡 Example Queries to Test
+| User Query | What Happens |
+|-----------|--------------|
+| "Is order ORD-1003 still eligible?" | Looks up order and returns eligibility |
+| "Can I return my yoga mat?" | Matches product name and calculates |
+| "How many days left to return my smartwatch?" | Uses date rules |
+| "I bought the headphones in September. Can I return them?" | Gemini extracts product intent |
+| "I want refund info for ORD‑1002" | Expandable future improvement |
+
+---
+
+## 🧠 Tech Used
+| Component | Purpose |
+|----------|---------|
+| **Gemini API** | Reasoning + Response |
+| **LangGraph** | Workflow control |
+| **Python Functions** | Tool logic for returns |
+| **JSON Data** | Mock purchases database |
+
+---
+
+## 🚀 Future Enhancements (Optional)
+- Refund calculator tool
+- Multi-turn memory
+- Web UI version
+- Logging & analytics
+- Unit test automation
+
+---
+
 

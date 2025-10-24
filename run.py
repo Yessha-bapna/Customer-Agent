@@ -1,6 +1,6 @@
 from src.graph_agent import app
 
-print("🤖 Product Return Support Agent (Gemini + LangGraph)")
+print("Product Return Support Agent ")
 print("Type 'exit' to quit\n")
 
 while True:
