@@ -15,15 +15,12 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 mock_path = os.path.join(BASE_DIR, "Data", "mock_purchases.json")
 if not os.path.exists(mock_path):
-    # fallback to lower-case path for backwards compatibility
     mock_path = os.path.join(BASE_DIR, "data", "mock_purchases.json")
 
 with open(mock_path, "r", encoding="utf-8") as f:
     purchases = json.load(f)
 
-# Note: return policy and eligibility checks use `Data/mock_purchases.json` as the source of truth for test/demo data
 
-# Define agent state (what data flows between nodes)
 from typing import TypedDict, Any
 
 class AgentState(TypedDict):
@@ -89,7 +86,7 @@ def respond_node(state: AgentState):
     action = state["action_result"]
 
     model = genai.GenerativeModel("gemini-2.5-flash")
-    if isinstance(action, str):  # if error string
+    if isinstance(action, str):  
         state["final_response"] = action
         print("\nAgent:", action)
         return state
