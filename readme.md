@@ -130,11 +130,11 @@ exit
 ## 💡 Example Queries to Test
 | User Query | What Happens |
 |-----------|--------------|
-| "Is order ORD-1003 still eligible?" | Looks up order and returns eligibility |
-| "Can I return my yoga mat?" | Matches product name and calculates |
-| "How many days left to return my smartwatch?" | Uses date rules |
-| "I bought the headphones in September. Can I return them?" | Gemini extracts product intent |
-| "I want refund info for ORD‑1002" | Expandable future improvement |
+| "Is order ORD-1003 still eligible?" 
+| "Can I return my Aurora yoga mat?" 
+| "How many days left to return my Nimbus smartwatch?"
+| "I bought the Acme Noise-Cancelling headphones in September. Can I return them?" 
+| "I want refund info for ORD‑1002" 
 
 ---
 
@@ -148,13 +148,7 @@ exit
 
 ---
 
-## 🚀 Future Enhancements (Optional)
-- Refund calculator tool
-- Multi-turn memory
-- Web UI version
-- Logging & analytics
-- Unit test automation
 
----
+
 
 
